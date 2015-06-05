@@ -41,6 +41,13 @@
             },300);
             return debounceFn;
         }
+
+        $scope.close = function () {
+            $mdSidenav('menu').close()
+                .then(function () {
+                    $log.debug("closed");
+                });
+        }
     });
 
     app.controller('LoginCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log) {

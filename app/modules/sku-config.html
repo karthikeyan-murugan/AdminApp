@@ -7,9 +7,11 @@
     </md-button>
     <md-whiteframe class="md-whiteframe-z1 view-frame" layout="column" flex>
         <div class="view-body">
-            <md-input-container>
+            <md-input-container class="sku-search-input">
                 <!-- Use floating label instead of placeholder -->
-                <label><md-icon md-font-library="material-icons">search</md-icon> Search Sku</label>
+                <label>
+                    <md-icon md-font-library="material-icons">search</md-icon>
+                    Search Sku</label>
                 <input ng-model="searchText" type="text">
             </md-input-container>
             <md-list>

@@ -6,22 +6,6 @@ html, body {
 
 }
 
-.view-frame {
-    background-color: #ffffff;
-    width: 97%;
-    min-width: 300px;
-    margin: 15px;
-    padding: 5px;
-
-}
-
-.view-title {
-    margin-left: 5px;
-}
-
-.view-body {
-    margin: 5px;
-}
 
 .menu-sidenav {
     position: fixed !important;
@@ -47,22 +31,45 @@ html, body {
     color: #888;
 }
 
+.view-frame {
+    background-color: #ffffff;
+    min-width: 300px;
+    margin: 15px;
+    padding: 5px;
+
+}
+
+.view-body {
+    margin: 5px;
+    padding-bottom: 20px;
+}
+
+@media (min-width: 600px) {
+    .site-content-toolbar {
+        margin-left: 256px;
+    }
+}
+
 .site-content-toolbar {
 
     background: #f6f6f6 !important;
     color: #202020 !important;
     z-index: 3;
     position: fixed;
-    margin-left: 256px;
 }
 
 .site-content-toolbar .md-button md-icon {
     color: #666 !important;
 }
 
+@media (min-width: 600px) {
+    .outer-view {
+        margin-left: 256px;
+    }
+}
+
 .outer-view {
     margin-top:64px;
-    margin-left: 256px;
     background-color: #eee !important;
 }
 
@@ -73,4 +80,8 @@ html, body {
     right: 0;
     bottom: 0;
     z-index: 1000;
+}
+
+.sku-search-input {
+    padding: 10px;
 }
