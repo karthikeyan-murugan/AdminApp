@@ -1,44 +1,64 @@
-<div layout="column">
-<div ng-controller="HeadCtrl">
-    <div ng-include="'modules/menu-sidenav.html'"> </div>
-    <div ng-include="'modules/header.html'"> </div>
-    <div ng-include="'modules/login-nav.html'"> </div>
-</div>
-    <div flex></div>
-<div ng-controller="AppCtrl" layout-margin layout="row">
+<div ng-controller="AppCtrl" layout="column">
+    <section layout="row" flex>
+        <md-sidenav class="menu-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="menu"
+                    md-is-locked-open="$mdMedia('gt-sm')">
+            <md-toolbar class=" md-tall md-theme-indigo">
+                <div class="md-toolbar-tools">
 
-    <md-whiteframe class="md-whiteframe-z1 app-sidenav" layout="column" flex>
-        <div ng-include="'modules/menu-content.html'"> </div>
-    </md-whiteframe>
+                    <header>
+                        <a ng-href="#/">
+                            <h1>CoreBLUE Admin</h1>
+                        </a>
+                    </header>
+                </div>
 
-    <md-whiteframe class="md-whiteframe-z1 view-frame" layout="column" flex>
-        <!--<md-toolbar>-->
-            <!--<div class="md-toolbar-tools view-title">-->
-                <!--<h3>-->
-                    <!--<span>Sku Config</span>-->
-                <!--</h3>-->
-            <!--</div>-->
-        <!--</md-toolbar>-->
-        <md-subheader class="view-title">Sku Configuration</md-subheader>
-        <md-divider >
-            <div class="view-body">
-                <md-input-container>
-                    <!-- Use floating label instead of placeholder -->
-                    <label>Search Sku</label>
-                    <input ng-model="searchText" type="text">
-                </md-input-container>
-                <md-list>
-                    <md-list-item class="md-3-line" ng-repeat="item in todos | filter:searchText">
-                        <div class="md-list-item-text">
-                            <h4>{{ item.sku }} - {{ item.carrier }}</h4>
-                            <p>{{ item.price }}</p>
-                        </div>
-                        <md-divider ng-if="!$last"></md-divider>
-                    </md-list-item>
-
-
-                </md-list>
+            </md-toolbar>
+            <md-content layout-padding role="navigation">
+                <div ng-include="'modules/menu-content.html'"></div>
+            </md-content>
+        </md-sidenav>
+        <md-content flex>
+            <div layout="column" tabIndex="-1" role="main" flex>
+                <md-toolbar class="md-whiteframe-z1 site-content-toolbar">
+                    <div class="md-toolbar-tools">
+                        <md-button class="md-icon-button" aria-label="Menu" ng-click="toggleMenu()" hide-gt-md>
+                            <md-icon md-font-library="material-icons">menu</md-icon>
+                            <md-tooltip>
+                                Menu
+                            </md-tooltip>
+                        </md-button>
+                        <h3>
+                            <span>Sku Configuration</span>
+                        </h3>
+                        <span flex></span>
+                    </div>
+                </md-toolbar>
+                <md-content class="outer-view" ng-view md-scroll-y flex></md-content>
             </div>
-        </md-whiteframe>
-</div>
+        </md-content>
+        <!--<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="login-nav">-->
+        <!--<md-toolbar class="md-theme-light">-->
+        <!--<h1 class="md-toolbar-tools">Login</h1>-->
+        <!--</md-toolbar>-->
+        <!--<md-content layout-padding>-->
+        <!--<form name="loginForm">-->
+        <!--<md-input-container>-->
+        <!--<label for="testInput">User Id</label>-->
+        <!--<input type="text" id="testInput"-->
+        <!--ng-model="userId" md-sidenav-focus required>-->
+        <!--</md-input-container>-->
+
+        <!--<md-input-container>-->
+        <!--<label for="testInput1">Password</label>-->
+        <!--<input type="password" id="testInput1"-->
+        <!--ng-model="password" required>-->
+        <!--</md-input-container>-->
+        <!--<div layout="row">-->
+        <!--<div flex></div>-->
+        <!--<md-button class="md-raised md-primary" ng-disabled="loginForm.$invalid" ng-click="login()">Login</md-button>-->
+        <!--</div>-->
+        <!--</form>-->
+        <!--</md-content>-->
+        <!--</md-sidenav>-->
+    </section>
 </div>
