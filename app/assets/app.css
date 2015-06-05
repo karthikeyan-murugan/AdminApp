@@ -1,0 +1,99 @@
+html, body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    height: 100%;
+    background-color: #eee;
+
+}
+
+.view-frame {
+    background-color: #ffffff;
+    width: 97%;
+    min-width: 300px;
+    margin: 15px;
+    padding: 5px;
+
+}
+
+.view-title {
+    margin-left: 5px;
+}
+
+.view-body {
+    margin: 5px;
+}
+
+/*.app-sidenav {*/
+/*background-color: #ffffff;*/
+/*width: 256px;*/
+/*min-width: 256px;*/
+/*max-width: 256px;*/
+/*}*/
+
+/*.app-sidenav md-list-item {*/
+/*padding-left: 15px;*/
+/*color: #3e3e3e;*/
+/*}*/
+
+.menu-sidenav {
+    position: fixed !important;
+}
+.menu-sidenav md-content {
+    color: #3e3e3e;
+}
+
+
+.menu-sidenav.md-locked-open, .menu-sidenav {
+    width: 256px;
+    min-width: 256px;
+    max-width: 256px;
+}
+
+.menu-heading {
+    display: block;
+    line-height: 32px;
+    margin: 0;
+    padding: 8px 16px 0;
+    text-align: left;
+    width: 100%;
+    color: #888;
+}
+
+/*.menu-item {*/
+/*padding: 0px  !important;*/
+/*margin: 0px  !important;*/
+/*width: 100%;*/
+/*}*/
+/*.menu-item :hover,*/
+/*.menu-item :focus{*/
+/*background-color: #eeeeee !important;*/
+
+/*}*/
+
+.site-content-toolbar {
+
+    background: #f6f6f6 !important;
+    color: #202020 !important;
+    z-index: 3;
+    position: fixed;
+    margin-left: 256px;
+}
+
+.site-content-toolbar .md-button md-icon {
+    color: #666 !important;
+}
+
+.outer-view {
+    margin-top:64px;
+    margin-left: 256px;
+    background-color: #eee !important;
+}
+
+.floating-icon {
+    margin-bottom: 36px;
+    margin-right: 36px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}

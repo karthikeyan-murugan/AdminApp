@@ -1,0 +1,30 @@
+<div layout="column" layout-align="top center" ng-controller="SkuConfigCtrl">
+    <md-button class="md-fab md-raised md-primary  floating-icon" aria-label="Add Sku">
+        <md-icon md-font-library="material-icons">add</md-icon>
+        <md-tooltip>
+            Add new Sku
+        </md-tooltip>
+    </md-button>
+    <md-whiteframe class="md-whiteframe-z1 view-frame" layout="column" flex>
+        <div class="view-body">
+            <md-input-container>
+                <!-- Use floating label instead of placeholder -->
+                <label><md-icon md-font-library="material-icons">search</md-icon> Search Sku</label>
+                <input ng-model="searchText" type="text">
+            </md-input-container>
+            <md-list>
+                <md-list-item class="md-3-line" ng-repeat="item in todos | filter:searchText">
+                    <div class="md-list-item-text">
+                        <h4>{{ item.sku }} - {{ item.carrier }}</h4>
+
+                        <p>{{ item.price }}</p>
+                    </div>
+                    <md-divider ng-if="!$last"></md-divider>
+                </md-list-item>
+
+
+            </md-list>
+
+        </div>
+    </md-whiteframe>
+</div>

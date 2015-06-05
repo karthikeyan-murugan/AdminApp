@@ -1,0 +1,44 @@
+<div layout="column">
+<div ng-controller="HeadCtrl">
+    <div ng-include="'modules/menu-sidenav.html'"> </div>
+    <div ng-include="'modules/header.html'"> </div>
+    <div ng-include="'modules/login-nav.html'"> </div>
+</div>
+    <div flex></div>
+<div ng-controller="AppCtrl" layout-margin layout="row">
+
+    <md-whiteframe class="md-whiteframe-z1 app-sidenav" layout="column" flex>
+        <div ng-include="'modules/menu-content.html'"> </div>
+    </md-whiteframe>
+
+    <md-whiteframe class="md-whiteframe-z1 view-frame" layout="column" flex>
+        <!--<md-toolbar>-->
+            <!--<div class="md-toolbar-tools view-title">-->
+                <!--<h3>-->
+                    <!--<span>Sku Config</span>-->
+                <!--</h3>-->
+            <!--</div>-->
+        <!--</md-toolbar>-->
+        <md-subheader class="view-title">Sku Configuration</md-subheader>
+        <md-divider >
+            <div class="view-body">
+                <md-input-container>
+                    <!-- Use floating label instead of placeholder -->
+                    <label>Search Sku</label>
+                    <input ng-model="searchText" type="text">
+                </md-input-container>
+                <md-list>
+                    <md-list-item class="md-3-line" ng-repeat="item in todos | filter:searchText">
+                        <div class="md-list-item-text">
+                            <h4>{{ item.sku }} - {{ item.carrier }}</h4>
+                            <p>{{ item.price }}</p>
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+
+
+                </md-list>
+            </div>
+        </md-whiteframe>
+</div>
+</div>
