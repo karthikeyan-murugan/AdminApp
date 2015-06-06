@@ -1,0 +1,49 @@
+<md-dialog>
+    <form>
+        <md-toolbar class="md-whiteframe-z1 md-hue-2">
+            <div class="md-toolbar-tools">
+                <span>Add Sku Config</span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="sticky-container">
+            <div>
+                <md-input-container flex>
+                    <label>Sku</label>
+                    <input ng-model="skuConfig.sku">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Carrier</label>
+                    <input ng-model="skuConfig.carrier">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>IB Full Price</label>
+                    <input ng-model="skuConfig.price">
+                </md-input-container>
+                <div layout layout-sm="column">
+                    <md-input-container flex>
+                        <label>Lease Price 1 / Mo.</label>
+                        <input ng-model="skuConfig.leastTerm1MonthlyPrice">
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Lease Price 2 / Mo.</label>
+                        <input ng-model="skuConfig.leastTerm2MonthlyPrice">
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Lease Price 3 / Mo.</label>
+                        <input ng-model="skuConfig.leastTerm3MonthlyPrice">
+                    </md-input-container>
+                </div>
+
+            </div>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <span flex></span>
+            <md-button ng-click="closeDialog()" class="md-primary">
+                Cancel
+            </md-button>
+            <md-button ng-click="addSkuConfig(skuConfig)" class="md-primary">
+                Add
+            </md-button>
+        </div>
+    </form>
+</md-dialog>

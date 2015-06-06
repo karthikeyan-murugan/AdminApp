@@ -82,6 +82,15 @@ html, body {
     z-index: 1000;
 }
 
+.list-item :hover {
+    background-color: #f6f6f6 !important;
+}
 .sku-search-input {
     padding: 10px;
 }
+
+.dialogdemoBasicUsage .dialog-demo-content div {
+    text-align: center; }
+.dialogdemoBasicUsage .md-subheader {
+    background-color: #dcedc8;
+    margin: 0; }

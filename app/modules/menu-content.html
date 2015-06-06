@@ -1,31 +1,11 @@
 <md-list>
     <h3 class="menu-heading md-subhead">Menu</h3>
     <md-divider ></md-divider>
-    <md-list-item>
+    <md-list-item class="md-focused" ng-repeat="menuItem in menuItems" ng-click="goTo(menuItem.location)">
         <div class="md-list-item-text">
-            <md-button ng-href="#/app-prop" ng-click="close()">Application Properties</md-button>
+            {{menuItem.name | uppercase}}
         </div>
     </md-list-item>
-    <md-list-item>
-        <div class="md-list-item-text">
-            <md-button ng-href="#/cache-manager" ng-click="close()">Cache Manager</md-button>
-        </div>
-    </md-list-item>
-    <md-divider ></md-divider>
-    <md-list-item>
-        <div class="md-list-item-text">
-            <md-button ng-href="#/sku-config" ng-click="close()">SKU Config</md-button>
-        </div>
-    </md-list-item>
-    <md-list-item>
-        <div class="md-list-item-text">
-            <md-button ng-href="#/product-config" ng-click="close()">Product Config</md-button>
-        </div>
-    </md-list-item>
-    <md-list-item>
-        <div class="md-list-item-text">
-            <md-button ng-href="#/carrier-plan-config" ng-click="close()" >Carrier Plans</md-button>
-        </div>
-    </md-list-item>
+
 
 </md-list>

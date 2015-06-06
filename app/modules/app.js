@@ -2,29 +2,28 @@
  * Created by Karthik on 6/1/15.
  */
 
-(function() {
+(function () {
     'use strict';
 
 
-    var app = angular.module('coreblue-admin', ['ngMaterial','ngRoute']);
+    var app = angular.module('coreblue-admin', ['ngMaterial', 'ngRoute']);
 
-    app.config(function($routeProvider, $httpProvider) {
+    app.config(function ($routeProvider, $httpProvider) {
 
         $routeProvider.
             when('/login/:loginError?', {//loginError not implemented yet.
-                templateUrl : 'modules/login/login.html'
+                templateUrl: 'modules/login/login.html'
             }).when('/sku-config', {
-                templateUrl : 'modules/sku-config.html'
+                templateUrl: 'modules/sku-config.html'
             }).otherwise('/sku-config');
 
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';  // To identity XHR in server.
 
     });
 
-    app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log) {
+    app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log,$location,$mdDialog) {
         $scope.toggleLoginNav = buildToggler('login-nav');
         $scope.toggleMenu = buildToggler('menu');
-
 
 
         /**
@@ -32,13 +31,13 @@
          * report completion in console
          */
         function buildToggler(navID) {
-            var debounceFn =  $mdUtil.debounce(function(){
+            var debounceFn = $mdUtil.debounce(function () {
                 $mdSidenav(navID)
                     .toggle()
                     .then(function () {
                         $log.debug("toggle " + navID + " is done");
                     });
-            },300);
+            }, 300);
             return debounceFn;
         }
 
@@ -48,6 +47,24 @@
                     $log.debug("closed");
                 });
         }
+
+        $scope.goTo = function (location) {
+            $mdSidenav('menu').close()
+                .then(function () {
+                    $log.debug("closed");
+                });
+            $location.path(location);
+        }
+
+        $scope.menuItems = [
+            {location: '/app-property', name: 'Application Property'},
+            {location: '/app-property', name: 'Cache Manager'},
+            {location: '/app-property', name: 'Sku Config'},
+            {location: '/app-property', name: 'Product Config'},
+            {location: '/app-property', name: 'Carrier Plans'}
+        ];
+
+
     });
 
     app.controller('LoginCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log) {
@@ -59,65 +76,125 @@
         }
     });
 
-    app.controller('SkuConfigCtrl', function($scope) {
-            var imagePath = 'img/list/60.jpeg';
-            $scope.phones = [
-                { type: 'Home', number: '(555) 251-1234' },
-                { type: 'Cell', number: '(555) 786-9841' },
-            ];
-            $scope.todos = [
-                {
-                    carrier: 'ATT',
-                    sku: '6123231',
-                    price: " $139.29"
-                },
-                {
-                    carrier: 'VEZ',
-                    sku: '6123231',
-                    price: " $239.29"
-                },
-                {
-                    carrier: 'ATT',
-                    sku: '6123231',
-                    price: " $39.29"
-                },
-                {
-                    carrier: 'SPR',
-                    sku: '1238472',
-                    price: " $390.29"
-                },
-                {
-                    carrier: 'ATT',
-                    sku: '6123231',
-                    price: " $39.29"
-                },
-                {
-                    carrier: 'ATT',
-                    sku: '6123231',
-                    price: " $39.29"
-                },
-                {
-                    carrier: 'ATT',
-                    sku: '6123231',
-                    price: " $39.29"
-                },
-                {
-                    carrier: 'ATT',
-                    sku: '6123231',
-                    price: " $39.29"
-                },
-                {
-                    carrier: 'ATT',
-                    sku: '6123231',
-                    price: " $39.29"
-                },
-                {
-                    carrier: 'ATT',
-                    sku: '6123231',
-                    price: " $39.29"
-                }
-            ];
-        });
+    app.controller('SkuConfigCtrl', function ($scope,$mdDialog, $log,$mdToast) {
+        $scope.skuConfigs = [
+            {
+                carrier: 'ATT',
+                sku: '6123231',
+                price: "139.29"
+            },
+            {
+                carrier: 'VEZ',
+                sku: '6123231',
+                price: "239.29"
+            },
+            {
+                carrier: 'ATT',
+                sku: '6123231',
+                price: "39.29"
+            },
+            {
+                carrier: 'SPR',
+                sku: '1238472',
+                price: "390.29"
+            },
+            {
+                carrier: 'ATT',
+                sku: '6123231',
+                price: "39.29"
+            },
+            {
+                carrier: 'ATT',
+                sku: '6123231',
+                price: "39.29"
+            },
+            {
+                carrier: 'ATT',
+                sku: '6123231',
+                price: "39.29"
+            },
+            {
+                carrier: 'ATT',
+                sku: '6123231',
+                price: "39.29"
+            },
+            {
+                carrier: 'ATT',
+                sku: '6123231',
+                price: "39.29"
+            },
+            {
+                carrier: 'ATT',
+                sku: '6123231',
+                price: "39.29"
+            }
+        ];
+
+        $scope.addSkuDialog = function(ev) {
+
+            $log.debug("show");
+            $mdDialog.show({
+                templateUrl: 'modules/add-sku-modal.html',
+                targetEvent: ev,
+                scope: $scope,
+                preserveScope: true,
+            })
+                .then(function(answer) {
+                    //$scope.alert = 'You said the information was "' + answer + '".';
+                }, function() {
+                    //$scope.alert = 'You cancelled the dialog.';
+                });
+        };
+
+        $scope.closeDialog = function() {
+            // Easily hides most recent dialog shown...
+            // no specific instance reference is needed.
+            $log.debug("close LEFT is done");
+            $mdDialog.hide();
+        };
+
+        $scope.addSkuConfig = function(skuConfig) {
+            $log.debug(skuConfig);
+            $mdDialog.hide();
+            $mdToast.show(
+                $mdToast.simple()
+                    .content('Sku config added!')
+                    .position('top right')
+                    .hideDelay(3000)
+            );
+        };
+
+        $scope.editSkuDialog = function(skuConfig,ev) {
+
+            //$scope.skuConfig = angular.copy(skuConfig);
+            $scope.skuConfig = skuConfig;
+            $log.debug("show");
+            $mdDialog.show({
+                templateUrl: 'modules/edit-sku-modal.html',
+                targetEvent: ev,
+                scope: $scope,
+                preserveScope: true,
+            })
+                .then(function(answer) {
+                    //$scope.alert = 'You said the information was "' + answer + '".';
+                }, function() {
+                    //$scope.alert = 'You cancelled the dialog.';
+                });
+        };
+
+        $scope.updateSkuConfig = function(skuConfig) {
+            $log.debug(skuConfig);
+            $mdDialog.hide();
+            $mdToast.show(
+                $mdToast.simple()
+                    .content('Sku config saved!')
+                    .position('top right')
+                    .hideDelay(3000)
+            );
+        };
+
+    });
+
 
 })();
 
