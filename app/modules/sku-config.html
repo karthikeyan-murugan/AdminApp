@@ -1,10 +1,4 @@
 <div layout="column" layout-align="top center" ng-controller="SkuConfigCtrl" flex>
-    <md-button class="md-fab md-raised md-primary  floating-icon" aria-label="Add Sku" ng-click="addSkuDialog($event)">
-        <md-icon md-font-library="material-icons">add</md-icon>
-        <md-tooltip>
-            Add new Sku
-        </md-tooltip>
-    </md-button>
     <md-whiteframe class="md-whiteframe-z1 view-frame" layout="column" flex>
         <div class="view-body">
             <md-input-container class="sku-search-input">
@@ -58,4 +52,10 @@
 
         </div>
     </md-whiteframe>
+    <md-button class="md-fab md-raised md-primary  floating-icon" aria-label="Add Sku" ng-click="addSkuDialog($event)">
+        <md-icon md-font-library="material-icons">add</md-icon>
+        <md-tooltip>
+            Add new Sku
+        </md-tooltip>
+    </md-button>
 </div>
