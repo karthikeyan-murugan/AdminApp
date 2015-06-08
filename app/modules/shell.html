@@ -5,10 +5,16 @@
             <md-toolbar class=" md-tall md-theme-indigo">
                 <div class="md-toolbar-tools">
 
-                    <header>
+                    <header flex>
                         <a ng-href="#/" ng-click="close()">
                             <h1>CoreBLUE Admin</h1>
                         </a>
+
+                            <!--<md-button class="header-user" flex>-->
+                                <!--Karthikeyan Murugan-->
+                                <!--<span flex></span>-->
+                            <!--<md-icon md-font-library="material-icons" flex>arrow_drop_down</md-icon>-->
+                                <!--</md-button>-->
                     </header>
                 </div>
 
@@ -28,7 +34,7 @@
                             </md-tooltip>
                         </md-button>
                         <h3>
-                            <span>Sku Configuration</span>
+                            {{activePage()}}
                         </h3>
                         <span flex></span>
                     </div>

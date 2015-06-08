@@ -15,13 +15,13 @@
                 templateUrl: 'modules/login/login.html'
             }).when('/sku-config', {
                 templateUrl: 'modules/sku-config.html'
-            }).otherwise('/sku-config');
+            }).otherwise('/');
 
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';  // To identity XHR in server.
 
     });
 
-    app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log,$location,$mdDialog) {
+    app.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log,$location,$filter) {
         $scope.toggleLoginNav = buildToggler('login-nav');
         $scope.toggleMenu = buildToggler('menu');
 
@@ -56,12 +56,25 @@
             $location.path(location);
         }
 
+        /**
+         * To check if path passed is the current path. Used to set active link.
+         */
+        $scope.isMenuActive = function (viewLocation) {
+            return viewLocation === $location.path();
+        };
+
+        $scope.activePage = function() {
+            var menuItem = $filter('filter')($scope.menuItems,{"location":$location.path()})[0];
+            return menuItem.name;
+        }
+
         $scope.menuItems = [
+            {location: '/', name: ''},
             {location: '/app-property', name: 'Application Property'},
-            {location: '/app-property', name: 'Cache Manager'},
-            {location: '/app-property', name: 'Sku Config'},
-            {location: '/app-property', name: 'Product Config'},
-            {location: '/app-property', name: 'Carrier Plans'}
+            {location: '/cache-manager', name: 'Cache Manager'},
+            {location: '/sku-config', name: 'Sku Configuration'},
+            {location: '/product-config', name: 'Product Configuration'},
+            {location: '/carrier-plans', name: 'Carrier Plans'}
         ];
 
 
@@ -81,7 +94,10 @@
             {
                 carrier: 'ATT',
                 sku: '6123231',
-                price: "139.29"
+                price: "139.29",
+                leastTerm1MonthlyPrice : 10.40
+
+
             },
             {
                 carrier: 'VEZ',
@@ -91,7 +107,11 @@
             {
                 carrier: 'ATT',
                 sku: '6123231',
-                price: "39.29"
+                price: "39.29",
+                leastTerm1MonthlyPrice : 15.40,
+                leastTerm2MonthlyPrice : 10.40
+
+
             },
             {
                 carrier: 'SPR',
@@ -111,7 +131,11 @@
             {
                 carrier: 'ATT',
                 sku: '6123231',
-                price: "39.29"
+                price: "39.29",
+                leastTerm1MonthlyPrice : 15.40,
+                leastTerm2MonthlyPrice : 10.40,
+                leastTerm3MonthlyPrice : 7.45
+
             },
             {
                 carrier: 'ATT',
@@ -131,13 +155,13 @@
         ];
 
         $scope.addSkuDialog = function(ev) {
-
+            $scope.skuConfig = {};
             $log.debug("show");
             $mdDialog.show({
                 templateUrl: 'modules/add-sku-modal.html',
                 targetEvent: ev,
                 scope: $scope,
-                preserveScope: true,
+                preserveScope: true
             })
                 .then(function(answer) {
                     //$scope.alert = 'You said the information was "' + answer + '".';
@@ -166,14 +190,13 @@
 
         $scope.editSkuDialog = function(skuConfig,ev) {
 
-            //$scope.skuConfig = angular.copy(skuConfig);
-            $scope.skuConfig = skuConfig;
+            $scope.skuConfig = angular.copy(skuConfig);
             $log.debug("show");
             $mdDialog.show({
                 templateUrl: 'modules/edit-sku-modal.html',
                 targetEvent: ev,
                 scope: $scope,
-                preserveScope: true,
+                preserveScope: true
             })
                 .then(function(answer) {
                     //$scope.alert = 'You said the information was "' + answer + '".';

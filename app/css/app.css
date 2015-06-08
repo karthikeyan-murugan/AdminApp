@@ -85,6 +85,11 @@ html, body {
 .list-item :hover {
     background-color: #f6f6f6 !important;
 }
+
+.list-item-active {
+    background-color: #f6f6f6 !important;
+}
+
 .sku-search-input {
     padding: 10px;
 }
@@ -94,3 +99,20 @@ html, body {
 .dialogdemoBasicUsage .md-subheader {
     background-color: #dcedc8;
     margin: 0; }
+
+
+/*.header-user {*/
+    /*font-size: small;*/
+    /*bottom: 2px;*/
+    /*position: absolute;*/
+/*}*/
+
+/*.action-icon {*/
+    /*padding-left: 5px;*/
+/*}*/
+
+.lease-price {
+    color: rgba(0,0,0,0.54);
+    line-height: 1.5em;
+    font-size: 13px;
+}

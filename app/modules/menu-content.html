@@ -1,7 +1,8 @@
 <md-list>
-    <h3 class="menu-heading md-subhead">Menu</h3>
+    <md-subheader class="md-no-sticky">Menu</md-subheader>
+
     <md-divider ></md-divider>
-    <md-list-item class="md-focused" ng-repeat="menuItem in menuItems" ng-click="goTo(menuItem.location)">
+    <md-list-item ng-repeat="menuItem in menuItems | filter:{'location' : '!/' } : true" class="list-item" ng-class="{ 'list-item-active' : isMenuActive(menuItem.location)}"  ng-click="goTo(menuItem.location)">
         <div class="md-list-item-text">
             {{menuItem.name | uppercase}}
         </div>
